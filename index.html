@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#111114">
+  <meta name="theme-color" content="#1d2232">
+  <meta name="description" content="xDTU - Kết nối sinh viên và giảng viên Đại học Duy Tân.">
   <title>xDTU - Mạng xã hội Đại học Duy Tân</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div id="toast" class="toast" role="status"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
   <section id="loginView" class="login-screen">
     <div class="login-card">
       <img class="login-logo" src="assets/logo.webp" alt="Logo xDTU">
@@ -27,38 +28,42 @@
   </section>
 
   <div id="appView" class="app-shell hidden">
-    <aside class="sidebar">
+    <aside class="sidebar" aria-label="Thanh điều hướng">
       <div class="brand"><img src="assets/logo.webp" alt=""><span>xDTU</span></div>
       <div class="user-mini">
         <div class="avatar" id="sideAvatar">x</div>
         <div><strong id="sideName">Người dùng</strong><small id="sideRole">Thành viên xDTU</small></div>
       </div>
-      <nav id="mainNav">
-        <button class="nav-item active" data-page="feed"><span>⌂</span>Bảng tin</button>
-        <button class="nav-item" data-page="profile"><span>◉</span>Trang cá nhân</button>
-        <button class="nav-item" data-page="groups"><span>▦</span>Nhóm đơn vị</button>
-        <button class="nav-item" data-page="market"><span>◇</span>Chợ xDTU</button>
-        <button class="nav-item" data-page="dating"><span>♡</span>Ghép đôi</button>
-        <button class="nav-item" data-page="hangout"><span>☕</span>Tìm bạn đi chơi</button>
-        <button class="nav-item" data-page="study"><span>▤</span>Tìm bạn học</button>
-        <button class="nav-item" data-page="messages"><span>✉</span>Tin nhắn</button>
-        <button class="nav-item" data-page="notifications"><span>♧</span>Thông báo <i id="notificationDot"></i></button>
+      <nav id="mainNav" aria-label="Điều hướng chính">
+        <button class="nav-item active" data-page="feed"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-6h6v6"/></svg>Bảng tin</button>
+        <button class="nav-item" data-page="profile"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>Trang cá nhân</button>
+        <button class="nav-item" data-page="groups"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M20 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Nhóm đơn vị</button>
+        <button class="nav-item" data-page="market"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l1 14H5L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>Chợ xDTU</button>
+        <button class="nav-item" data-page="dating"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg>Ghép đôi</button>
+        <button class="nav-item" data-page="hangout"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M4 7h14v8a5 5 0 0 1-5 5h-4a5 5 0 0 1-5-5V7Z"/><path d="M18 10h1a3 3 0 1 1 0 6h-2"/></svg>Tìm bạn đi chơi</button>
+        <button class="nav-item" data-page="study"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18V5a1 1 0 0 1 1-1h4a4 4 0 0 1 4 4 4 4 0 0 1 4-4h4a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-4a4 4 0 0 0-4 4 4 4 0 0 0-4-4H4a1 1 0 0 1-1-1Z"/></svg>Tìm bạn học</button>
+        <button class="nav-item" data-page="messages"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8A8.5 8.5 0 0 1 8.7 3.9a8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5Z"/></svg>Tin nhắn</button>
+        <button class="nav-item" data-page="notifications"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg>Thông báo <i id="notificationDot"></i></button>
       </nav>
-      <button id="logoutBtn" class="nav-item logout"><span>↪</span>Đăng xuất</button>
+      <button id="logoutBtn" class="nav-item logout"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>Đăng xuất</button>
     </aside>
 
     <main class="main-area">
       <header class="topbar">
         <div><div class="eyebrow">DUY TAN UNIVERSITY</div><h2 id="pageTitle">Bảng tin</h2></div>
         <div class="top-actions">
-          <div class="search-wrap"><span>⌕</span><input id="userSearch" placeholder="Tìm theo tên hoặc mã..." autocomplete="off"></div>
-          <button class="icon-btn" data-page="notifications" title="Thông báo">♧</button>
+          <label class="search-wrap">
+            <svg class="icon search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+            <span class="sr-only">Tìm người dùng theo tên hoặc mã</span>
+            <input id="userSearch" type="search" placeholder="Tìm theo tên hoặc mã..." autocomplete="off">
+          </label>
+          <button class="icon-btn" data-page="notifications" title="Thông báo" aria-label="Mở thông báo"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg></button>
           <div class="avatar small" id="topAvatar">x</div>
         </div>
-        <div id="searchResults" class="search-results hidden"></div>
+        <div id="searchResults" class="search-results hidden" role="listbox" aria-label="Kết quả tìm kiếm"></div>
       </header>
       <div class="content-grid">
-        <section id="pageContent" class="page-content"></section>
+        <section id="pageContent" class="page-content" aria-live="polite"></section>
         <aside class="right-rail">
           <div class="panel">
             <div class="panel-heading">Không gian xDTU</div>
