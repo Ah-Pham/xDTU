@@ -1,7 +1,7 @@
 const $ = (selector) => document.querySelector(selector);
 const state = {
   user: null, page: "feed", posts: [], feedLoading: false, feedError: "", activeGroup: null, viewedProfile: null, profilePosts: null,
-  demo: true,
+  demo: false,
   pendingPostImages: [], pendingPostVideo: null, commentsByPost: {}, commentAttachments: {},
   pendingCommentImages: [], pendingCommentVideo: null,
   conversations: [], messagesByConversation: {}, activeConversationId: null,
