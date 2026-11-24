@@ -1,7 +1,7 @@
 const $ = (selector) => document.querySelector(selector);
 const state = {
   user: null, page: "feed", posts: [], feedLoading: false, feedError: "", activeGroup: null, viewedProfile: null, profilePosts: null,
-  demo: true,
+  demo: false,
   pendingPostImages: [], pendingPostVideo: null, commentsByPost: {}, commentAttachments: {},
   pendingCommentImages: [], pendingCommentVideo: null,
   conversations: [], messagesByConversation: {}, activeConversationId: null,
@@ -372,7 +372,7 @@ function renderProfile(){
  const details=[
    ["Mã định danh",user.code],["Họ và tên",user.fullName],["Ngày sinh",user.birthDate],
    ["Quê quán",user.hometown],["Trường trực thuộc",user.school],["Ngành học",user.major],
-   ["Vai trò",user.role],["Sở thích",user.interests],["Tình trạng",user.relationshipStatus],
+   ["Vai trò",user.role],["Sở thích",user.interests],["Tình trạng",user.relationshipStatus==="Single"?"Độc thân":user.relationshipStatus==="Dating"?"Hẹn hò":"Chưa cập nhật"],
    ["Mô tả",user.bio]
  ];
  return `<div class="profile-cover">${avatar(user,false,"profile-avatar")}</div>
@@ -1055,7 +1055,7 @@ async function downloadMessage(messageId){
 }
 function openProfileModal(){
  const u=state.user;
- $("#modalRoot").innerHTML=`<div class="modal-backdrop"><div class="modal"><div class="modal-head"><h3>Chỉnh sửa trang cá nhân</h3><button class="modal-close icon-btn" type="button" aria-label="Đóng">${icon("close")}</button></div><p class="muted small-text">Thông tin định danh do nhà trường cung cấp được khóa và không thể chỉnh sửa.</p><div class="form-grid"><div class="form-group"><label>Mã sinh viên / giảng viên (khóa)</label><input class="field" value="${escapeHtml(u.code)}" disabled></div><div class="form-group"><label>Họ tên (khóa)</label><input class="field" value="${escapeHtml(u.fullName)}" disabled></div><div class="form-group full-row"><label>Nickname (tùy chọn)</label><input id="nickname" class="field" value="${escapeHtml(u.nickname||"")}" placeholder="Tên hiển thị thay cho họ tên"></div><div class="form-group"><label>Sở thích</label><input id="interests" class="field" value="${escapeHtml(u.interests||"")}"></div><div class="form-group"><label>Tình trạng</label><select id="relationship" class="field"><option value="">Chưa chọn</option><option value="Single" ${u.relationshipStatus==="Single"?"selected":""}>Độc thân</option><option value="Dating" ${u.relationshipStatus==="Dating"?"selected":""}>Hẹn hò</option></select></div><div class="form-group full-row"><label>Mô tả</label><textarea id="bio" class="field" rows="3">${escapeHtml(u.bio||"")}</textarea></div><div class="form-group full-row"><label><input id="nicknameEnabled" type="checkbox" ${u.nicknameEnabled?"checked":""}> Sử dụng nickname thay cho họ tên khi hiển thị</label></div></div><div class="modal-actions"><button class="btn btn-secondary modal-close">Hủy</button><button id="saveProfile" class="btn btn-primary">Lưu thay đổi</button></div></div></div>`;
+ $("#modalRoot").innerHTML=`<div class="modal-backdrop"><div class="modal"><div class="modal-head"><h3>Chỉnh sửa trang cá nhân</h3><button class="modal-close icon-btn" type="button" aria-label="Đóng">${icon("close")}</button></div><p class="muted small-text">Thông tin định danh do nhà trường cung cấp được khóa và không thể chỉnh sửa.</p><div class="form-grid"><div class="form-group"><label>Mã sinh viên / giảng viên (khóa)</label><input class="field" value="${escapeHtml(u.code)}" disabled></div><div class="form-group"><label>Họ tên (khóa)</label><input class="field" value="${escapeHtml(u.fullName)}" disabled></div><div class="form-group full-row"><label>Nickname (tùy chọn)</label><input id="nickname" class="field" value="${escapeHtml(u.nickname||"")}" placeholder="Tên hiển thị thay cho họ tên"></div><div class="form-group"><label>Sở thích</label><input id="interests" class="field" value="${escapeHtml(u.interests||"")}"></div><div class="form-group"><label>Tình trạng</label><select id="relationship" class="field"><option value="">Chưa cập nhật</option><option value="Single" ${u.relationshipStatus==="Single"?"selected":""}>Độc thân</option><option value="Dating" ${u.relationshipStatus==="Dating"?"selected":""}>Hẹn hò</option></select></div><div class="form-group full-row"><label>Mô tả</label><textarea id="bio" class="field" rows="3">${escapeHtml(u.bio||"")}</textarea></div><div class="form-group full-row"><label><input id="nicknameEnabled" type="checkbox" ${u.nicknameEnabled?"checked":""}> Sử dụng nickname thay cho họ tên khi hiển thị</label></div></div><div class="modal-actions"><button class="btn btn-secondary modal-close">Hủy</button><button id="saveProfile" class="btn btn-primary">Lưu thay đổi</button></div></div></div>`;
  document.querySelectorAll(".modal-close").forEach(b=>b.addEventListener("click",()=>$("#modalRoot").innerHTML=""));
  $("#saveProfile").addEventListener("click",async()=>{
   const updates={nickname:$("#nickname").value.trim(),nicknameEnabled:$("#nicknameEnabled").checked,interests:$("#interests").value.trim(),relationshipStatus:$("#relationship").value,bio:$("#bio").value.trim()};
