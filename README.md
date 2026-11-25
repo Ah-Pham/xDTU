@@ -196,7 +196,7 @@ Response đề xuất:
   "nicknameEnabled": false,
   "interests": null,
   "bio": null,
-  "relationshipStatus": null,
+  "relationshipStatus": "Chưa cập nhật",
   "followerCount": 0,
   "postCount": 0
 }
@@ -214,11 +214,11 @@ Chỉ cập nhật trường người dùng tự thiết lập:
   "nicknameEnabled": true,
   "interests": "Lập trình, đọc sách",
   "bio": "Xin chào mọi người!",
-  "relationshipStatus": "Single"
+  "relationshipStatus": "Độc thân"
 }
 ```
 
-Giá trị `relationshipStatus`: `Single`, `Dating`, hoặc `null`. Response `200` trả hồ sơ cập nhật; lỗi dữ liệu trả `400`, token hết hạn trả `401`.
+Giá trị `relationshipStatus`: `Độc thân`, `Hẹn hò`, hoặc `Chưa cập nhật`. Response `200` trả hồ sơ cập nhật; lỗi dữ liệu trả `400`, token hết hạn trả `401`.
 
 Response `200`: trả hồ sơ mới nhất. Backend phải bỏ qua/từ chối mọi trường định danh nếu client cố gửi thêm.
 
