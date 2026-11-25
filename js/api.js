@@ -3,7 +3,7 @@
   Sửa API_BASE theo địa chỉ ASP.NET Core Backend.
   Các hàm trả về JSON; lỗi HTTP sẽ được ném thành Error.
 */
-const API_BASE = "https://localhost:7001/api";
+const API_BASE = "https://flow-alto-diversity-honolulu.trycloudflare.com";
 
 const Api = {
   token: () => localStorage.getItem("xdtu_token"),
